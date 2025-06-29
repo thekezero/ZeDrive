@@ -1,4 +1,4 @@
-### ZeDrive: Private & Encrypted
+### ZeDrive: Private & Encrypted Cloud
 
 <sup>**ZeDrive** is a secure, zero-knowledge cloud storage service.  
 Part of the KeZero suite, built to run across multiple platforms with shared code.</sup>
