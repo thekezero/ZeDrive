@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeDrive.Server", "Server\ZeDrive.Server.csproj", "{76060FED-0043-4236-AB32-F9E39F1059C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeDrive.Shared", "Shared\ZeDrive.Shared.csproj", "{D61EAC83-F575-482F-B8A5-5385B17558F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76060FED-0043-4236-AB32-F9E39F1059C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76060FED-0043-4236-AB32-F9E39F1059C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76060FED-0043-4236-AB32-F9E39F1059C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76060FED-0043-4236-AB32-F9E39F1059C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61EAC83-F575-482F-B8A5-5385B17558F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61EAC83-F575-482F-B8A5-5385B17558F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61EAC83-F575-482F-B8A5-5385B17558F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61EAC83-F575-482F-B8A5-5385B17558F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
