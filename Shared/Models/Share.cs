@@ -12,7 +12,7 @@ public class Share
     
     /// <summary>Folder identifier (when <see cref="IsFolder"/> is true).</summary>
     [JsonPropertyName("folder_id")]
-    public Guid FolderId { get; set; } = Guid.Empty();
+    public Guid FolderId { get; set; } = default;
 
     /// <summary>Encrypted master key for accessing the share (base64).</summary>
     [JsonPropertyName("master_key")]
