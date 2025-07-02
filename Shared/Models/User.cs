@@ -18,6 +18,10 @@ public class User
     [JsonPropertyName("username")]
     public string Username { get; set; } = string.Empty;
 
+    ///<summary>The user pseudonym (displayed name)</summary>
+    [JsonPropertyName("name")]
+    private string Pseudonym { get; set; } = string.Empty;
+
     /// <summary>Total storage capacity assigned to this user (in bytes).</summary>
     [JsonPropertyName("storage")]
     public ulong Storage { get; set; } = 0;
