@@ -1,6 +1,0 @@
-@ZeDrive.Server_HostAddress = http://localhost:5044
-
-GET {{ZeDrive.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

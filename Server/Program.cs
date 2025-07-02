@@ -1,44 +1,48 @@
-var builder = WebApplication.CreateBuilder(args);
+using dotenv.net;
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+internal class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    public static void Main(string[] arguments)
+    {
+        InitializeEnvironment();
+        InitializeBuilder(arguments, out var builder);
+        InitializeApplication(ref builder);
+    }
 
-app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    private static void InitializeEnvironment()
+    {
+        const EnvironmentVariableTarget process = EnvironmentVariableTarget.Process;
+        DotEnv.Load();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+        var env = DotEnv.Read();
+        {
+            Environment.SetEnvironmentVariable("ASPNETCORE_URLS", env["APPLICATION_ENDPOINT"], process);
+            Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", env["APPLICATION_ENVIRONMENT"], process);
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", env["APPLICATION_ENVIRONMENT"], process);
+        }
+    }
 
-app.Run();
+    private static void InitializeBuilder(string[] args, out WebApplicationBuilder builder)
+    {
+        builder = WebApplication.CreateBuilder(args);
+        {
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+        }
+    }
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    private static void InitializeApplication(ref WebApplicationBuilder builder)
+    {
+        var app = builder.Build();
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            app.MapControllers();
+            app.UseStaticFiles();
+            app.UseHttpsRedirection();
+            app.Run();
+        }
+    }
 }
