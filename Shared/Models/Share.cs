@@ -9,6 +9,10 @@ public class Share
     /// <summary>Unique identifier of the share.</summary>
     [JsonPropertyName("id")]
     public Guid Id { get; set; } = Guid.NewGuid();
+    
+    /// <summary>Folder identifier (when <see cref="IsFolder"/> is true).</summary>
+    [JsonPropertyName("folder_id")]
+    public Guid FolderId { get; set; } = Guid.Empty();
 
     /// <summary>Encrypted master key for accessing the share (base64).</summary>
     [JsonPropertyName("master_key")]
