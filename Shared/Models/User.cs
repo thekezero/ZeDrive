@@ -11,8 +11,8 @@ public class User
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>External user account identifier (e.g., from auth provider).</summary>
-    [JsonPropertyName("user_id")]
-    public string UserId { get; set; } = string.Empty;
+    [JsonPropertyName("shared_id")]
+    public string SharedId { get; set; } = string.Empty;
 
     /// <summary>The username or display name of the user.</summary>
     [JsonPropertyName("username")]
@@ -22,9 +22,13 @@ public class User
     [JsonPropertyName("name")]
     private string Pseudonym { get; set; } = string.Empty;
 
-    /// <summary>Total storage capacity assigned to this user (in bytes).</summary>
+    /// <summary>Storage assigned to this user.</summary>
     [JsonPropertyName("storage")]
-    public ulong Storage { get; set; } = 0;
+    public Storage Storage { get; set; } = new();
+    
+    ///<summary>User plans</summary>
+    [JsonPropertyName("plan")]
+    public Plan Plan { get; set; } = new();
 
     /// <summary>The timestamp when the user was created.</summary>
     [JsonPropertyName("created_at")]

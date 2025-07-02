@@ -31,16 +31,9 @@ public class File
     [JsonPropertyName("master_key")]
     public string MasterKey { get; set; } = string.Empty;
 
-    /// <summary>
-    ///     Encrypted virtual path (Base64), represents the logical folder structure.<br />
-    ///     Encrypted with the master key of the Storage Space.
-    /// </summary>
-    [JsonPropertyName("path")]
-    public string Path { get; set; } = string.Empty;
-
     /// <summary>Total size of the file in bytes.</summary>
     [JsonPropertyName("file_size")]
-    public long FileSize { get; set; } = 0;
+    public ulong FileSize { get; set; } = 0;
 
     ///<summary>List of chunks that compose the file, allowing distributed and resumable uploads.</summary>
     [JsonPropertyName("chunks")]

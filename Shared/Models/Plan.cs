@@ -10,25 +10,13 @@ public class Plan
     [JsonPropertyName("id")]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    ///<summary>Name of the plan.</summary>
-    [JsonPropertyName("name")]
-    public string Name { get; set; } = string.Empty;
-
-    ///<summary>Base capacity in bytes of the plan.</summary>
-    [JsonPropertyName("capacity")]
-    public ulong Capacity { get; set; } = 0;
-
-    ///<summary>List of extra capacities (e.g., add-ons) with expiration dates.</summary>
-    [JsonPropertyName("capacities")]
-    public List<Capacity> Capacities { get; set; } = [];
+    ///<summary>List of extra resources (e.g., add-ons) with expiration dates.</summary>
+    [JsonPropertyName("resources")]
+    public List<Resource> Resources { get; set; } = [];
 
     ///<summary> Gets the total capacity by summing base capacity and all valid, not cancelled extra capacities. </summary>
     [JsonPropertyName("total_capacity")]
-    public ulong TotalCapacity => GetTotalCapacity();
-
-    ///<summary>Indicates if the plan is cancelled.</summary>
-    [JsonPropertyName("is_cancelled")]
-    public bool IsCancelled { get; set; } = false;
+    public decimal TotalCapacity => CalculateTotalCapacity();
 
     ///<summary>Date and time when the plan was created.</summary>
     [JsonPropertyName("created_at")]
@@ -42,10 +30,25 @@ public class Plan
     [JsonPropertyName("expire_at")]
     public DateTime ExpiredAt { get; set; } = DateTime.MaxValue;
 
-    ///<summary>Gets the total capacity by summing base capacity and all valid, not cancelled extra capacities.</summary>
-    public ulong GetTotalCapacity()
+    private decimal CalculateTotalCapacity()
     {
         var now = DateTime.UtcNow;
-        return Capacity + (ulong)Capacities.Where(x => !x.IsCancelled && x.ExpiredAt >= now).Sum(x => (long)x.Value);
+
+        var additionalStorage = Resources
+            .Where(x => x is { Type: ResourceType.AdditionalStorage, IsCancelled: false } && x.ExpiredAt >= now)
+            .Aggregate(decimal.Zero, (current, x) => current + ulong.Parse(x.Value));
+
+        var basicStorage = Resources
+            .Where(x => x is { Type: ResourceType.PremiumMembership, IsCancelled: false } && x.ExpiredAt >= now)
+            .MinBy(x => x.CreatedAt)?.Value;
+
+        var premiumStorage = Resources
+            .Where(x => x is { Type: ResourceType.PremiumMembership, IsCancelled: false } && x.ExpiredAt >= now)
+            .MinBy(x => x.CreatedAt)?.Value;
+
+        var basicStorageValue = (decimal)ulong.Parse(basicStorage ?? ulong.MinValue.ToString());
+        var premiumStorageValue = (decimal)ulong.Parse(premiumStorage ?? ulong.MinValue.ToString());
+
+        return basicStorageValue + premiumStorageValue + additionalStorage;
     }
 }

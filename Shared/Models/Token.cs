@@ -29,4 +29,8 @@ public class Token
     ///<summary>Issued at date and time of the token.</summary>
     [JsonPropertyName("iat")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddYears(sbyte.MaxValue);
+
+    /// <summary>Raw JWT</summary>
+    [JsonIgnore]
+    public string? RawToken { get; set; } = string.Empty;
 }

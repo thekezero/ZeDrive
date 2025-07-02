@@ -10,10 +10,6 @@ public class Member
     [JsonPropertyName("id")]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    /// <summary>Unique identifier of the user that owns this membership.</summary>
-    [JsonPropertyName("user_id")]
-    public Guid UserId { get; set; } = Guid.NewGuid();
-
     /// <summary>Encrypted Master Key (encrypted using the user's Master Key). Base64 encoded.</summary>
     [JsonPropertyName("master_key")]
     public string MasterKey { get; set; } = string.Empty;
@@ -22,11 +18,10 @@ public class Member
     [JsonPropertyName("is_owner")]
     public bool IsOwner { get; set; } = false;
 
-    /// <summary>Indicates whether the user has view-only access to the space.</summary>
-    [JsonPropertyName("is_viewer")]
-    public bool IsViewer { get; set; } = false;
-
-    /// <summary>Indicates whether the user has permission to view and edit the space.</summary>
+    /// <summary>
+    ///     Indicates whether the user has permission to view and edit the space when true, otherwise (false) view-only
+    ///     access to the space.
+    /// </summary>
     [JsonPropertyName("is_editor")]
     public bool IsEditor { get; set; } = false;
 

@@ -10,10 +10,6 @@ public class Storage
     [JsonPropertyName("id")]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    ///<summary>User's current plan (storage limits, quotas, expiration).</summary>
-    [JsonPropertyName("plans")]
-    public List<Plan> Plans { get; set; } = [];
-
     ///<summary>The main space stored by the user.</summary>
     [JsonPropertyName("space")]
     public Space Space { get; set; } = new();

@@ -18,9 +18,9 @@ public class Space
     [JsonPropertyName("name")]
     public string Name { get; set; } = string.Empty;
 
-    /// <summary>List of files stored within the space.</summary>
-    [JsonPropertyName("files")]
-    public List<File> Files { get; set; } = [];
+    /// <summary>Root space folder.</summary>
+    [JsonPropertyName("folder")]
+    public Folder Folder { get; set; } = new();
 
     /// <summary>List of members that have access to the space.</summary>
     [JsonPropertyName("members")]
