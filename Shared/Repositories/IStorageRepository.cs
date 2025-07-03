@@ -9,11 +9,10 @@ public interface IStorageRepository
     #region File
 
     /// <summary>Creates a new file inside a space.</summary>
-    Task<File?> CreateFileAsync(Token token, Space space, string name, string path, string hash, ulong size,
-        string key);
+    Task<File?> CreateFileAsync(Token token, Space space, string name, Guid folderId, string hash, string key);
 
     /// <summary>Uploads a chunk for a specific file by sequence.</summary>
-    Task<Chunk?> CreateFileChuckAsync(Token token, Space space, Guid id, ulong sequence, ulong size, byte[] chuck);
+    Task<Chunk?> CreateFileChuckAsync(Token token, Space space, Guid id, ulong sequence, byte[] chuck);
 
     /// <summary>Retrieves a file by ID within the given space.</summary>
     Task<File?> GetFileAsync(Token token, Space space, Guid id);
@@ -29,20 +28,20 @@ public interface IStorageRepository
     #region Folder
 
     /// <summary>Creates a new folder at the specified path inside a space.</summary>
-    Task<Folder?> CreateFolderAsync(Token token, Space space, string path);
+    Task<Folder?> CreateFolderAsync(Token token, Space space, string name, Guid parentId);
 
     /// <summary>Deletes a folder by ID from the space.</summary>
     Task<Folder?> DeleteFolderAsync(Token token, Space space, Guid id);
 
     /// <summary>Renames a folder inside the space by updating its path.</summary>
-    Task<Folder?> RenameFolderAsync(Token token, Space space, Guid id, string path);
+    Task<Folder?> RenameFolderAsync(Token token, Space space, Guid id, string name);
 
     #endregion
 
     #region Space
 
     /// <summary>Creates a new space with the specified ID and name.</summary>
-    Task<Space?> CreateSpaceAsync(Token token, Guid id, string name);
+    Task<Space?> CreateSpaceAsync(Token token, string name);
 
     /// <summary>Retrieves a space by ID.</summary>
     Task<Space?> GetSpaceAsync(Token token, Guid id);
@@ -65,6 +64,9 @@ public interface IStorageRepository
 
     /// <summary>Gets the owner of a space.</summary>
     Task<Member?> GetSpaceOwnerAsync(Token token, Guid id);
+    
+    /// <summary>Gets the members of a space.</summary>
+    Task<Member?> GetSpaceMemberAsync(Token token, Guid id, Guid memberId);
 
     /// <summary>Lists all members of a space.</summary>
     Task<List<Member>?> GetSpaceMembersAsync(Token token, Guid id);
@@ -77,13 +79,13 @@ public interface IStorageRepository
     #region Capacity
 
     /// <summary>Gets the total storage capacity for the user's plan.</summary>
-    Task<ulong?> GetTotalCapacityAsync(Token token, Storage storage);
+    Task<ulong?> GetTotalCapacityAsync(Token token);
 
     /// <summary>Gets the reserved storage capacity (used space).</summary>
-    Task<ulong?> GetReservedCapacityAsync(Token token, Storage storage);
+    Task<ulong?> GetReservedCapacityAsync(Token token);
 
     /// <summary>Gets the remaining available storage capacity.</summary>
-    Task<ulong?> GetAvailableCapacityAsync(Token token, Storage storage);
+    Task<ulong?> GetAvailableCapacityAsync(Token token);
 
     #endregion
 }

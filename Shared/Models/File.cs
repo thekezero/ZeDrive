@@ -13,6 +13,10 @@ public class File
     [JsonPropertyName("id")]
     public Guid Id { get; set; } = Guid.NewGuid();
 
+    ///<summary>File folder identifier.</summary>
+    [JsonPropertyName("folder_id")]
+    public Guid FolderId { get; set; } = Guid.NewGuid();
+
     ///<summary>Encrypted file name (Base64), encrypted with the master key of the Storage Space.</summary>
     [JsonPropertyName("file_name")]
     public string FileName { get; set; } = string.Empty;
