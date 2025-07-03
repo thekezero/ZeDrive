@@ -31,6 +31,6 @@ public class Token
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddYears(sbyte.MaxValue);
 
     /// <summary>Raw JWT</summary>
-    [JsonIgnore]
+    [JsonPropertyName("raw")]
     public string? RawToken { get; set; } = string.Empty;
 }
