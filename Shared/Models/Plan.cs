@@ -26,10 +26,6 @@ public class Plan
     [JsonPropertyName("updated_at")]
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-    ///<summary>Date and time when the plan expires.</summary>
-    [JsonPropertyName("expire_at")]
-    public DateTime ExpiredAt { get; set; } = DateTime.MaxValue;
-
     private decimal CalculateTotalCapacity()
     {
         var now = DateTime.UtcNow;
