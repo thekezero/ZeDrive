@@ -1,4 +1,7 @@
 using dotenv.net;
+using ZeDrive.Server.Data;
+using ZeDrive.Server.Repositories;
+using ZeDrive.Shared.Repositories;
 
 internal class Program
 {
@@ -30,6 +33,11 @@ internal class Program
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSingleton<DatabaseContext>();
+            builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+            builder.Services.AddScoped<IStorageRepository, StorageRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 
