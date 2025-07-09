@@ -19,14 +19,14 @@ public class User
     public string Username { get; set; } = string.Empty;
 
     ///<summary>The user pseudonym (displayed name)</summary>
-    [JsonPropertyName("name")]
-    private string Pseudonym { get; set; } = string.Empty;
+    [JsonPropertyName("pseudonym")]
+    public string Pseudonym { get; set; } = string.Empty;
 
     /// <summary>Storage assigned to this user.</summary>
     [JsonPropertyName("storage")]
     public Storage Storage { get; set; } = new();
-    
-    ///<summary>User plans</summary>
+
+    ///<summary>User plan</summary>
     [JsonPropertyName("plan")]
     public Plan Plan { get; set; } = new();
 
