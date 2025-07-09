@@ -37,7 +37,7 @@ public class File
 
     /// <summary>Total size of the file in bytes.</summary>
     [JsonPropertyName("file_size")]
-    public ulong FileSize { get; set; } = 0;
+    public decimal FileSize { get; set; } = 0;
 
     ///<summary>List of chunks that compose the file, allowing distributed and resumable uploads.</summary>
     [JsonPropertyName("chunks")]

@@ -13,7 +13,7 @@ public class StorageRepository([FromServices] DatabaseContext database) : IStora
         throw new NotImplementedException();
     }
 
-    public Task<Chunk?> CreateFileChuckAsync(Token token, Space space, Guid id, ulong sequence, byte[] chuck)
+    public Task<Chunk?> CreateFileChuckAsync(Token token, Space space, Guid id, uint sequence, byte[] chuck)
     {
         throw new NotImplementedException();
     }

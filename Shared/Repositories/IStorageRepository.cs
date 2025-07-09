@@ -12,7 +12,7 @@ public interface IStorageRepository
     Task<File?> CreateFileAsync(Token token, Space space, string name, Guid folderId, string hash, string key);
 
     /// <summary>Uploads a chunk for a specific file by sequence.</summary>
-    Task<Chunk?> CreateFileChuckAsync(Token token, Space space, Guid id, ulong sequence, byte[] chuck);
+    Task<Chunk?> CreateFileChuckAsync(Token token, Space space, Guid id, uint sequence, byte[] chuck);
 
     /// <summary>Retrieves a file by ID within the given space.</summary>
     Task<File?> GetFileAsync(Token token, Space space, Guid id);

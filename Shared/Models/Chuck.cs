@@ -19,8 +19,8 @@ public class Chunk
     public uint Size { get; set; } = 0;
 
     ///<summary>Sequence number of the chunk in the file for reassembly.</summary>
-    [JsonPropertyName("order")]
-    public uint Order { get; set; } = 0;
+    [JsonPropertyName("sequence")]
+    public uint Sequence { get; set; } = 0;
 
     ///<summary>UTC timestamp when the chunk was created.</summary>
     [JsonPropertyName("created_at")]

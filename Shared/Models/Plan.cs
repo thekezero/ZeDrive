@@ -32,7 +32,7 @@ public class Plan
 
         var additionalStorage = Resources
             .Where(x => x is { Type: ResourceType.AdditionalStorage, IsCancelled: false } && x.ExpiredAt >= now)
-            .Aggregate(decimal.Zero, (current, x) => current + ulong.Parse(x.Value));
+            .Aggregate(decimal.Zero, (current, x) => current + decimal.Parse(x.Value));
 
         var basicStorage = Resources
             .Where(x => x is { Type: ResourceType.PremiumMembership, IsCancelled: false } && x.ExpiredAt >= now)
@@ -42,8 +42,8 @@ public class Plan
             .Where(x => x is { Type: ResourceType.PremiumMembership, IsCancelled: false } && x.ExpiredAt >= now)
             .MinBy(x => x.CreatedAt)?.Value;
 
-        var basicStorageValue = (decimal)ulong.Parse(basicStorage ?? ulong.MinValue.ToString());
-        var premiumStorageValue = (decimal)ulong.Parse(premiumStorage ?? ulong.MinValue.ToString());
+        var basicStorageValue = decimal.Parse(basicStorage ?? decimal.Zero.ToString());
+        var premiumStorageValue = decimal.Parse(premiumStorage ?? decimal.Zero.ToString());
 
         return basicStorageValue + premiumStorageValue + additionalStorage;
     }

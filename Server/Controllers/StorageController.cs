@@ -18,7 +18,7 @@ public class StorageController([FromServices] IStorageRepository repository) : C
 
     [HttpPost("file/chuck")]
     public Task<Chunk?> CreateFileChuckAsync([FromHeader] Token token, [FromQuery] Space space, [FromQuery] Guid id,
-        [FromQuery] ulong sequence, [FromQuery] byte[] chuck)
+        [FromQuery] uint sequence, [FromQuery] byte[] chuck)
     {
         return repository.CreateFileChuckAsync(token, space, id, sequence, chuck);
     }
