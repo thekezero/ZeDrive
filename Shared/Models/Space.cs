@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ZeDrive.Shared.Models;
@@ -8,6 +9,7 @@ public class Space
 {
     /// <summary>Unique identifier of the space.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>The owner of the space.</summary>

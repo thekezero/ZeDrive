@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZeDrive.Shared.Models;
 
@@ -7,10 +9,12 @@ namespace ZeDrive.Shared.Models;
 ///     distribution, and status information.
 /// </summary>
 [Serializable]
+[Index(nameof(MasterKey), IsUnique = true)]
 public class File
 {
     ///<summary>Unique identifier for the file.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     ///<summary>File folder identifier.</summary>

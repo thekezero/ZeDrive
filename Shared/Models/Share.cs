@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ZeDrive.Shared.Models;
@@ -8,8 +9,9 @@ public class Share
 {
     /// <summary>Unique identifier of the share.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
-    
+
     /// <summary>Folder identifier (when <see cref="IsFolder"/> is true).</summary>
     [JsonPropertyName("folder_id")]
     public Guid FolderId { get; set; } = default;
@@ -36,7 +38,7 @@ public class Share
 
     /// <summary>Optional expiration date after which the share is invalid.</summary>
     [JsonPropertyName("expire_at")]
-    public DateTime? ExpireAt { get; set; }
+    public DateTime ExpireAt { get; set; } = new DateTime();
 
     /// <summary>Date and time when the share was created.</summary>
     [JsonPropertyName("created_at")]

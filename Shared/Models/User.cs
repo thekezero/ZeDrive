@@ -1,13 +1,17 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZeDrive.Shared.Models;
 
 /// <summary>Represents a user within the ZeDrive system.</summary>
 [Serializable]
+[Index(nameof(Username), IsUnique = true)]
 public class User
 {
     /// <summary>Unique identifier of the user entity (internal ID).</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>External user account identifier (e.g., from auth provider).</summary>

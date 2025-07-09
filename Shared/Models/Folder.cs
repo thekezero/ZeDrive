@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ZeDrive.Shared.Models;
@@ -7,6 +8,7 @@ public class Folder
 {
     /// <summary>Unique identifier for this folder.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>Encrypted path within the space (base64, encrypted with space key).</summary>

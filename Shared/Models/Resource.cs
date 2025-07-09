@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ZeDrive.Shared.Models;
@@ -8,6 +9,7 @@ public class Resource
 {
     /// <summary>Unique identifier of the resource entry.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>The type of resource (e.g., PremiumMembership, AdditionalStorage).</summary>

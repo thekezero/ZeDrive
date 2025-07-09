@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZeDrive.Shared.Models;
 
@@ -8,6 +10,7 @@ public class Token
 {
     ///<summary>Unique identifier of the entity.</summary>
     [JsonPropertyName("jit")]
+    [Key]
     private string Id { get; set; } = string.Empty;
 
     ///<summary>Username (subject) of the token.</summary>

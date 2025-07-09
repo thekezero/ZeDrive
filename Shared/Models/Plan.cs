@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ZeDrive.Shared.Models;
@@ -8,6 +9,7 @@ public class Plan
 {
     ///<summary>Unique identifier of the plan.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     ///<summary>List of extra resources (e.g., add-ons) with expiration dates.</summary>

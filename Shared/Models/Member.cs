@@ -1,13 +1,17 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZeDrive.Shared.Models;
 
 /// <summary>Represents a user's membership and access level within a specific space.</summary>
 [Serializable]
+[Index(nameof(MasterKey), IsUnique = true)]
 public class Member
 {
     /// <summary>Unique identifier of the membership entry (not the user's ID).</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>Encrypted Master Key (encrypted using the user's Master Key). Base64 encoded.</summary>

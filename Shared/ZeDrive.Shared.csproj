@@ -6,4 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="microsoft.EntityFrameworkCore" Version="9.0.7" />
+    </ItemGroup>
+
 </Project>

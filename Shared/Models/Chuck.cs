@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ZeDrive.Shared.Models;
@@ -8,6 +9,7 @@ public class Chunk
 {
     ///<summary>Unique identifier for the chunk. Also used as the object key in the storage bucket.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     ///<summary>Index used to determine where the chunk is distributed across regions or storage nodes.</summary>

@@ -1,13 +1,17 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZeDrive.Shared.Models;
 
 ///<summary>Represents an individual file included in a share, with its encrypted access key.</summary>
 [Serializable]
+[Index(nameof(MasterKey), IsUnique = true)]
 public class Item
 {
     ///<summary>Unique identifier of the item entry in the share.</summary>
     [JsonPropertyName("id")]
+    [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     ///<summary>ID of the file being shared.</summary>
